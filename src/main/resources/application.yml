@@ -1,0 +1,66 @@
+###ThymeLeaf配置
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  port: 8000
+
+spring:
+  redis:
+    # host: 192.168.31.233 # 虚拟机linux地址
+    host: 120.27.136.9 # 萌萌岛linux地址
+    password: leishen # 萌萌岛redis密码
+  mail: # 邮箱发送服务器配置
+    host: smtp.qq.com   # qq邮箱服务器发送地址
+    username: xuyu233@qq.com  # 发件人邮箱地址
+    password: pirdejcxtanadchh  #发件人邮箱授权密码
+    default-encoding: utf-8  #邮件编码
+    port: 587
+
+
+  devtools:
+    restart:
+      enabled: true # 配置热部署
+      additional-paths: src/main/java
+      exclude: WEB-INF/**
+  thymeleaf:
+    #模板的模式，支持 HTML, XML TEXT JAVASCRIPT
+    mode: HTML5
+    #编码 可不用配置
+    encoding: UTF-8
+    #开发配置为false,避免修改模板还要重启服务器
+    cache: false
+    #配置模板路径，默认是templates，可以不用配置
+    prefix: classpath:/templates/
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/wyadmin
+    username: root
+    password: xuyu233
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+wy:
+  sms:
+    accessKeyId: LTAI4GKP99pY5j8Fjqq2iyGP # 你自己的accessKeyId
+    accessKeySecret: 578aDGEQH9e12XAp2DMJRaFSEE3iv6 # 你自己的AccessKeySecret
+    signName: candy # 签名名称
+    verifyCodeTemplate: SMS_166376606 # 模板名称
+  email:
+    sender: xuyu233@qq.com  #这个是发送人的邮箱
+    # receiver: xuyu128288@163.com  #这个是接受人的邮箱
+    title: 感谢您注册智慧管家,请务必查看本邮件内容    #标题
+    text: 亲爱的%s,感谢您注册使用智慧管家，您的账号是：%s,您的账号密码默认为：123456，请尽快前往首页（http://120.27.136.9）进行修改哟。
